@@ -1,0 +1,14 @@
+#!/bin/bash
+Threshold=50
+Email="admin@gmail.com"
+
+CPU_Usage=$ (top -bn1 | grep "Cpu(s)" | awk '{print 100 -$8}' )
+
+CPU_Int= { CPU_usage%* }
+
+if [ "$CPU_Int" -gt "$threshold" ]
+then
+echo "High CPU usuage: $CPU_Int%" | mail -s "CPU Alert" $Email
+
+fi
+
